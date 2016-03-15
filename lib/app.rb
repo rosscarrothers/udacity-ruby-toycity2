@@ -14,63 +14,63 @@ end
 
 def print_heading
   # Print "Sales Report" in ascii art
-  puts "  ______             __                            _______                                             __     "    
-  puts " /      \           /  |                          /       \                                           /  |    "   
-  puts "/$$$$$$  |  ______  $$ |  ______    _______       $$$$$$$  |  ______    ______    ______    ______   _$$ |_   "  
-  puts "$$ \__$$/  /      \ $$ | /      \  /       |      $$ |__$$ | /      \  /      \  /      \  /      \ / $$   |  " 
-  puts "$$      \  $$$$$$  |$$ |/$$$$$$  |/$$$$$$$/       $$    $$< /$$$$$$  |/$$$$$$  |/$$$$$$  |/$$$$$$  |$$$$$$/   "
-  puts " $$$$$$  | /    $$ |$$ |$$    $$ |$$      \       $$$$$$$  |$$    $$ |$$ |  $$ |$$ |  $$ |$$ |  $$/   $$ | __ "
-  puts "/  \__$$ |/$$$$$$$ |$$ |$$$$$$$$/  $$$$$$  |      $$ |  $$ |$$$$$$$$/ $$ |__$$ |$$ \__$$ |$$ |        $$ |/  |"
-  puts "$$    $$/ $$    $$ |$$ |$$       |/     $$/       $$ |  $$ |$$       |$$    $$/ $$    $$/ $$ |        $$  $$/ "
-  puts " $$$$$$/   $$$$$$$/ $$/  $$$$$$$/ $$$$$$$/        $$/   $$/  $$$$$$$/ $$$$$$$/   $$$$$$/  $$/          $$$$/  "
-  puts "                                                                      $$ |                                    "
-  puts "                                                                      $$ |                                    "
-  puts "                                                                      $$/                                     "
+  $report_file.puts "  ______             __                            _______                                             __     "    
+  $report_file.puts " /      \           /  |                          /       \                                           /  |    "   
+  $report_file.puts "/$$$$$$  |  ______  $$ |  ______    _______       $$$$$$$  |  ______    ______    ______    ______   _$$ |_   "  
+  $report_file.puts "$$ \__$$/  /      \ $$ | /      \  /       |      $$ |__$$ | /      \  /      \  /      \  /      \ / $$   |  " 
+  $report_file.puts "$$      \  $$$$$$  |$$ |/$$$$$$  |/$$$$$$$/       $$    $$< /$$$$$$  |/$$$$$$  |/$$$$$$  |/$$$$$$  |$$$$$$/   "
+  $report_file.puts " $$$$$$  | /    $$ |$$ |$$    $$ |$$      \       $$$$$$$  |$$    $$ |$$ |  $$ |$$ |  $$ |$$ |  $$/   $$ | __ "
+  $report_file.puts "/  \__$$ |/$$$$$$$ |$$ |$$$$$$$$/  $$$$$$  |      $$ |  $$ |$$$$$$$$/ $$ |__$$ |$$ \__$$ |$$ |        $$ |/  |"
+  $report_file.puts "$$    $$/ $$    $$ |$$ |$$       |/     $$/       $$ |  $$ |$$       |$$    $$/ $$    $$/ $$ |        $$  $$/ "
+  $report_file.puts " $$$$$$/   $$$$$$$/ $$/  $$$$$$$/ $$$$$$$/        $$/   $$/  $$$$$$$/ $$$$$$$/   $$$$$$/  $$/          $$$$/  "
+  $report_file.puts "                                                                      $$ |                                    "
+  $report_file.puts "                                                                      $$ |                                    "
+  $report_file.puts "                                                                      $$/                                     "
 
   # Print today's date
-  puts "Date: #{Date.today}\n"
+  $report_file.puts "Date: #{Date.today}\n"
 end
 
 def print_products_header
   # Print "Products" in ascii art
-  puts "                     _            _       "
-  puts "                    | |          | |      "
-  puts " _ __  _ __ ___   __| |_   _  ___| |_ ___ "
-  puts "| '_ \\| '__/ _ \\ / _` | | | |/ __| __/ __|"
-  puts "| |_) | | | (_) | (_| | |_| | (__| |_\\__ \\"
-  puts "| .__/|_|  \\___/ \\__,_|\\__,_|\\___|\\__|___/"
-  puts "| |                                       "
-  puts "|_|                                       \n\n"                                                                          
+  $report_file.puts "                     _            _       "
+  $report_file.puts "                    | |          | |      "
+  $report_file.puts " _ __  _ __ ___   __| |_   _  ___| |_ ___ "
+  $report_file.puts "| '_ \\| '__/ _ \\ / _` | | | |/ __| __/ __|"
+  $report_file.puts "| |_) | | | (_) | (_| | |_| | (__| |_\\__ \\"
+  $report_file.puts "| .__/|_|  \\___/ \\__,_|\\__,_|\\___|\\__|___/"
+  $report_file.puts "| |                                       "
+  $report_file.puts "|_|                                       \n\n"                                                                          
 end
 
 def print_product_data
   # For each product in the data set:
   $products_hash["items"].each do | item |
     # Print the name of the toy
-    puts item["title"]
+    $report_file.puts item["title"]
 
     # Print the retail price of the toy
     full_price = item["full-price"]
-    puts "Full price: $#{full_price}"
+    $report_file.puts "Full price: $#{full_price}"
 
     # Calculate and print the total number of purchases
     number_of_purchases = item["purchases"].length 
-    puts "Number of purchases: #{number_of_purchases}"
+    $report_file.puts "Number of purchases: #{number_of_purchases}"
 
     # Calculate and print the total amount of sales
     total_sales = 0
     item["purchases"].each do | sale |
       total_sales += sale["price"]
     end 
-    puts "Total sales: $#{total_sales}"
+    $report_file.puts "Total sales: $#{total_sales}"
 
     # Calculate and print the average price the toy sold for
     average_price = total_sales / number_of_purchases
-    puts "Average price: $#{average_price}"
+    $report_file.puts "Average price: $#{average_price}"
 
     # Calculate and print the average discount (% or $) based off the average sales price
     average_discount = full_price.to_f - average_price
-    puts "Average discount: $#{format("%.2f", average_discount)}\n\n"
+    $report_file.puts "Average discount: $#{format("%.2f", average_discount)}\n\n"
   end
 end
 
@@ -84,13 +84,13 @@ end
 
 def print_brands_header
   # Print "Brands" in ascii art
-  puts " _                         _     "
-  puts "| |                       | |    "
-  puts "| |__  _ __ __ _ _ __   __| |___ "
-  puts "| '_ \\| '__/ _` | '_ \\ / _` / __|"
-  puts "| |_) | | | (_| | | | | (_| \\__ \\"
-  puts "|_.__/|_|  \\__,_|_| |_|\\__,_|___/"
-  puts                                                            
+  $report_file.puts " _                         _     "
+  $report_file.puts "| |                       | |    "
+  $report_file.puts "| |__  _ __ __ _ _ __   __| |___ "
+  $report_file.puts "| '_ \\| '__/ _` | '_ \\ / _` / __|"
+  $report_file.puts "| |_) | | | (_| | | | | (_| \\__ \\"
+  $report_file.puts "|_.__/|_|  \\__,_|_| |_|\\__,_|___/"
+  $report_file.puts                                                            
 end
 
 def print_brands_data
@@ -126,17 +126,17 @@ def print_brands_data
   # For each brand in the data set:
   brands.each do | brand_name, data |
     # Print the name of the brand
-    puts "Brand: #{brand_name}"
+    $report_file.puts "Brand: #{brand_name}"
 
     # Count and print the number of the brand's toys we stock
-    puts "Number of toys: #{data[:number_of_toys]}"
+    $report_file.puts "Number of toys: #{data[:number_of_toys]}"
 
     # Calculate and print the average price of the brand's toys
     average_toy_price = data[:total_toy_price] / data[:number_of_toys]
-    puts "Average toy price: $#{format("%.2f", average_toy_price)}"
+    $report_file.puts "Average toy price: $#{format("%.2f", average_toy_price)}"
 
     # Calculate and print the total revenue of all the brand's toy sales combined
-    puts "Total sales revenue: $#{format("%.2f", data[:total_sales_revenue])}\n\n"
+    $report_file.puts "Total sales revenue: $#{format("%.2f", data[:total_sales_revenue])}\n\n"
   end
 end
 
@@ -164,6 +164,7 @@ end
 def start 
   setup_files # load, read, parse, and create the files
   create_report # create the report!
+  $report_file.close
 end
 
 # Run the program
