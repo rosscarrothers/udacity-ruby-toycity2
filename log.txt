@@ -1,0 +1,17 @@
+commit bcaeb5e5b43e2b216c51d07d2f05c080e9777f26
+Author: Ross Carrothers <ross.carrothers@gmail.com>
+Date:   Mon Mar 14 21:47:08 2016 -0700
+
+    Changed console output to be written to file. Also closed the file when the report is complete. Report is now included.
+
+commit b089654715c46f2c6a79b8fc688490c7f0e1eac0
+Author: Ross Carrothers <ross.carrothers@gmail.com>
+Date:   Mon Mar 14 21:37:46 2016 -0700
+
+    Ported functionality of ToyCity Report Generator 1. Currently writes sales data to the console like it did before
+
+commit 55818c7daec5d176bf413ec6f8a98dec1af48ec3
+Author: Ross Carrothers <ross.carrothers@gmail.com>
+Date:   Sun Mar 13 15:41:06 2016 -0700
+
+    Initial commit
